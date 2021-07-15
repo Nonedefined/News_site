@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{%block title%}{{news.title}}{%endblock%}
+{% block sidebar%}
+{% include "inc/_sidebar.html"%}
+{%endblock%}
+
+{% block content%}
+<div class="card">
+    <h5 class="card-header">Category: <a href="{{i.category.get_absolute_url}}">{{news.category.title}}</a>
+    </h5>
+    <div class="card-body">
+        <div class="media">
+            {% if news.photo%}
+            <img src="{{ news.photo.url }}" width="300" alt="" align="left"
+                 vspace="5" hspace="5">
+            {%else%}
+            <img src="http://pbs.twimg.com/profile_images/1108430392267280389/ufmFwzIn.png"
+                 width="300" alt="" align="left"
+                 vspace="5" hspace="5">
+            {% endif%}
+
+            <div class="media-body">
+                <h5 class="card-title">{{news.title}}</h5>
+                <p class="card-text">{{news.content|linebreaks}}</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-footer text-muted">
+        {{news.created_at}}
+    </div>
+    <br>
+    {% if request.user.is_authenticated%}
+    <form method="post">
+        {% csrf_token %}
+        <div class="card">
+            <div class="comment-box ml-2">
+                <h5>Add a comment</h5>
+                {{form.as_p}}
+                <div class="col-6">
+                    <div>
+                        <button type="submit" class="btn btn-success">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    {% else%}
+    <a href="{% url 'login'%}" class="btn btn-primary">Login to post comments</a>
+    {% endif %}
+
+    <br>
+    {% for i in comments%}
+    <div class="card-body">
+        <p class="text-secondary">{{i.user.username}} {{i.created_at|timesince}} ago</p>
+        <p class="card-text">{{i.text}}</p>
+    </div>
+    {% endfor%}
+</div>
+{%endblock%}

@@ -1,0 +1,10 @@
+Package                 Version
+----------------------- --------------------
+Django                  2.2.12
+django-js-asset         1.2.2
+django-nested-admin     3.3.3
+django-nested-inlines   0.1
+django-ranged-response  0.2.0
+django-simple-captcha   0.5.14
+django-super-inlines    0.2.1
+Pillow                  7.0.0

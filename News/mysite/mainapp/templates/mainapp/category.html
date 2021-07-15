@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{%block title%}{{title}}{%endblock%}
+{% block sidebar%}
+{% include "inc/_sidebar.html"%}
+{%endblock%}
+
+{% block content%}
+{%if page_obj%}
+{% for i in page_obj.object_list%}
+<div class="card">
+    <h5 class="card-header">Category: {{i.category.title}}
+    </h5>
+    <div class="card-body">
+        <div class="media">
+            {% if i.photo%}
+            <img src="{{ i.photo.url }}" width="300" alt="" align="left"
+                 vspace="5" hspace="5">
+            {%else%}
+            <img src="http://pbs.twimg.com/profile_images/1108430392267280389/ufmFwzIn.png"
+                 width="300" alt="" align="left"
+                 vspace="5" hspace="5">
+            {% endif%}
+
+            <div class="media-body">
+                <h5 class="card-title">{{i.title}}</h5>
+                <p class="card-text">{{i.content|linebreaks|truncatewords:100}}</p>
+                <a href="{{i.get_absolute_url}}" class="btn btn-primary">Read more</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-footer text-muted">
+        {{i.created_at}}
+    </div>
+</div>
+{%endfor%}
+{% else%}
+<h2>There is no news in this category</h2>
+<a href="{% url 'add_news'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Suggest news</a>
+
+{% endif%}
+{%endblock%}
+
