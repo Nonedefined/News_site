@@ -1,14 +1,11 @@
 {% extends 'base.html' %}
 {%block title%}{{title}}{%endblock%}
-{% block sidebar%}
-{% include "inc/_sidebar.html"%}
-{%endblock%}
 
 {% block content%}
 {%if page_obj%}
+<center><h2>{{category}}</h2></center>
 {% for i in page_obj.object_list%}
 <div class="card">
-    <h5 class="card-header">Category: {{i.category.title}}
     </h5>
     <div class="card-body">
         <div class="media">
@@ -22,9 +19,9 @@
             {% endif%}
 
             <div class="media-body">
-                <h5 class="card-title">{{i.title}}</h5>
-                <p class="card-text">{{i.content|linebreaks|truncatewords:100}}</p>
-                <a href="{{i.get_absolute_url}}" class="btn btn-primary">Read more</a>
+                <h5 class="card-title"><a href="{{i.get_absolute_url}}">{{i.title}}</a></h5>
+
+                <p class="card-text">{{i.short_content}}</p>
             </div>
         </div>
 

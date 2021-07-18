@@ -10,9 +10,22 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'login'%}">Suggest news</a>
                     {% endif %}
                 </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categories
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            {% for i in categories%}
+                            <li><a href="{{i.get_absolute_url}}">{{i.title}}</a></li>
+                            {% endfor%}
+                        </ul>
+                    </div>
+                </li>
             </ul>
+
             <form class="d-flex" action="{% url 'home'%}">
-                <input class="form-control me-2" type="search" placeholder="Search news" aria-label="Search" name="search">
+                <input class="form-control me-2" type="search" placeholder="Search news" aria-label="Search"
+                       name="search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
 

@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {%block title%}{{news.title}}{%endblock%}
-{% block sidebar%}
-{% include "inc/_sidebar.html"%}
-{%endblock%}
+
 
 {% block content%}
 <div class="card">
-    <h5 class="card-header">Category: <a href="{{i.category.get_absolute_url}}">{{news.category.title}}</a>
+    <h5 class="card-header"><a href="{{i.category.get_absolute_url}}">{{news.category.title}}</a>
     </h5>
     <div class="card-body">
         <div class="media">
