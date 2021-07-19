@@ -21,4 +21,5 @@ class NewsAdmin(admin.ModelAdmin):
 admin.site.register(News, NewsAdmin)
 admin.site.register(Category)
 admin.site.register(Comment)
+admin.site.register(WeatherCity)
 

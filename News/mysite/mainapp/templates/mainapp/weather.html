@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{%block title%}{{title}}{%endblock%}
+
+{% block content%}
+{% for i in weather_cities%}
+<div class="card">
+    <div class="card-body">
+        <a href="https://www.weather-forecast.com/locations/{{i.slug_title}}/forecasts/latest" target="_blank"
+           class="btn btn-primary btn-lg active"
+           role="button" aria-pressed="true">{{i.title}}</a>
+    </div>
+</div>
+
+
+{% endfor%}
+
+
+{%endblock%}

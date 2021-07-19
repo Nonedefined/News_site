@@ -41,3 +41,8 @@ class CommentForm(forms.Form):
                                                             "rows": 4,
                                                             "placeholder": "What is your view?"}))
 
+
+class WeatherForm(forms.Form):
+    city = forms.CharField(label="", widget=forms.TextInput(attrs={"class": "form-control",
+                                                                   "placeholder": "Enter a city"}))
+

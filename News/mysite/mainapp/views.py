@@ -18,7 +18,7 @@ def index(request):
     page_num = request.GET.get('page', 1)
     page_objects = paginator.get_page(page_num)
 
-    context = {"page_obj": page_objects, "title": "News list", "categories": categories}
+    context = {"page_obj": page_objects, "categories": categories, "title": "News list"}
     return render(request, "mainapp/index.html", context)
 
 
@@ -34,7 +34,7 @@ def view_category(request, category_id):
     page_objects = paginator.get_page(page_num)
 
     categories = Category.objects.all()
-    context = {"page_obj": page_objects, "categories": categories, "category": category}
+    context = {"page_obj": page_objects, "categories": categories, "category": category, "title": category.title}
 
     return render(request, "mainapp/category.html", context)
 
@@ -56,9 +56,18 @@ def view_news(request, news_id):
 
     categories = Category.objects.all()
     comments = Comment.objects.filter(news=news)
-    context = {"news": news, "categories": categories, "form": form, "comments": comments}
+    context = {"news": news, "categories": categories, "form": form, "comments": comments, "title": news.title}
 
     return render(request, "mainapp/view_news.html", context)
+
+
+def weather(request):
+    weather_cities = WeatherCity.objects.all()
+    "{city}"
+
+    categories = Category.objects.all()
+    context = {"categories": categories, "weather_cities": weather_cities, "title": "weather"}
+    return render(request, "mainapp/weather.html", context)
 
 
 def add_news(request):
@@ -72,7 +81,7 @@ def add_news(request):
         form = NewsForm()
 
     categories = Category.objects.all()
-    context = {"categories": categories, "form": form}
+    context = {"categories": categories, "form": form, "title": "Suggest news"}
     return render(request, "mainapp/add_news.html", context)
 
 
@@ -89,7 +98,7 @@ def register(request):
     else:
         form = UserRegisterForm()
 
-    return render(request, "mainapp/register.html", {"form": form})
+    return render(request, "mainapp/register.html", {"form": form, "title": "Registration"})
 
 
 def user_login(request):
@@ -101,7 +110,7 @@ def user_login(request):
             return redirect("home")
     else:
         form = UserLoginForm()
-    return render(request, "mainapp/login.html", {"form": form})
+    return render(request, "mainapp/login.html", {"form": form, "title": "Authorization"})
 
 
 def user_logout(request):
