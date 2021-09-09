@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat</title>
+</head>
+<body>
+<div class="sticky-top">
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/swagger/">API</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            {% for message in messages%}
+            <div class="container mt-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-12">
+                        <div class="card p-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="user d-flex flex-row align-items-center"><span><small
+                                        class="font-weight-bold text-primary">{{message.email}}</small></span>
+                                </div>
+                                <small>
+                                    {{message.created_date|timesince}} ago
+                                </small>
+                            </div>
+                            <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                {{message.text}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+      integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+</body>
+</html>
